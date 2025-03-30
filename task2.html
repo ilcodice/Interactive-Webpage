@@ -1,0 +1,96 @@
+<!-- 2. Dynamic Copyright Year
+In this task, you'll utilize the JavaScript Date API to dynamically set the
+copyright year in the footer section. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <main>
+        <section class="contact_section">
+            <div class="contact_us">
+                <h3>Contact us</h3>
+                <label for="name">Name</label>
+                <input type="text" id="name" nmae="name" placeholder="Your Name">
+                <p>Name is requierd</p>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email">
+                <p>Email is requierd</p>
+
+                <label for="message">Message</label>
+                <input type="text" id="message" name="message" placeholder="Your Message">
+                <p>Message is requierd</p>
+
+                <button>Submit</button>
+
+                <p id="copyright">copyright </p>
+
+            </div>
+
+
+
+        </section>
+    </main>
+
+    <style>
+        h3{
+            color: white;
+        }
+        label, input{
+            color: white;
+            width: 300px;
+            border-radius: 5px;
+            font-size: 12px;
+            height: 20px;
+        }
+
+        p{
+            color: rgb(240, 53, 53);
+            font-size: 12px;
+            margin-top: 0px;
+        }
+        .contact_section{
+            background-color: rgb(21, 21, 87);
+            padding: 10px 0px 10px 60px;
+        }
+
+        #message{
+            height: 80px;
+        }
+        .contact_us{
+            display: flex;
+            flex-direction: column;
+        }
+        button{
+            color: white;
+            background-color: rgb(121, 121, 224);
+            width: 60px;
+            border: none;
+            border-radius: 2px;
+            padding: 5px;
+        }
+        #copyright{
+            color: white;
+            margin-top: 30px;
+        }
+
+
+    </style>
+
+
+    <script>
+        date = new Date();
+        full_year = date.getFullYear()
+        document.querySelector("#copyright").append(full_year)
+
+
+    </script>
+    
+</body>
+</html>

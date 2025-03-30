@@ -1,0 +1,122 @@
+<!-- 1. Testimonials
+● Upon clicking the "Next" or "Previous" buttons, the testimonial displayed
+will transition to the next or previous one accordingly.
+● The navigation is cyclic, meaning that when the user reaches the final
+testimonial and clicks the "Next" button, the first testimonial will appear.
+Similarly, if the user is viewing the first testimonial and clicks the
+"Previous" button, the last testimonial will be displayed.
+● Next, try to implement an infinite testimonial loop that automatically
+changes every 3 seconds using setInterval.
+You can utilize the provided dummy data to populate and display the
+testimonials on the webpage. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <div class="container"></div>
+
+
+      <div>
+        <button id="previous">previous</button>
+        <button id="next">next</button>
+      </div>
+    </main>
+
+    <style>
+      .container {
+        width: 300px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        border: 1px solid black;
+        border-radius: 5px;
+      }
+
+      .container img {
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+
+
+      }
+      p{
+        text-align: center;
+      }
+    </style>
+
+    <script>
+
+      const testData = [
+        {
+            "name": "June Cha",
+            "position": "Software Engineer",
+            "photo": "https://randomuser.me/api/portraits/women/44.jpg",
+            "text": "This platform is an absolute game-changer for competitive programmers. The extensive range of problems and challenges offered here truly hones your skills and prepares you for any coding competition. With detailed solutions and an active community, it's the perfect environment to sharpen your coding prowess.",
+                    },
+        {
+            "name": "Iida Niskanen",
+            "position": "Data Engineer",
+            "photo": "https://randomuser.me/api/portraits/women/67.jpg",
+            "text": "I can't express enough how valuable this platform has been for me. As someone deeply passionate about algorithms and data structures, I've found the diverse set of problems here both stimulating and enriching. The intuitive interface and seamless experience make it my go-to destination for honing my problem-solving skills."
+            },
+
+            {
+            "name": "Renee Sims",
+            "position": "Cloud engineer",
+            "photo": "https://randomuser.me/api/portraits/women/8.jpg",
+            "text": "If you're serious about excelling in competitive coding,look no further. This platform not only provides a comprehensive set of problems but also fosters a supportive community where you can exchange ideas and strategies. It's been instrumental in my journey towards becoming a better competitive coder."
+            },
+            {
+            "name": "Sasha Ho",
+            "position": "Phd student",
+            "photo":
+            "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?h=3 50&auto=compress&cs=tinysrgb",
+            "text": "I've tried numerous competitive programming platforms, but none come close to the quality and depth offered here. From beginner-friendly challenges to advanced algorithmic puzzles, there's something for everyone. The platform's commitment to excellence is evident in every aspect, making it my preferred choice for honing my coding skills."
+            },
+
+            {
+            "name": "Veeti Seppanen",
+            "position": "Frontend developer",
+            "photo": "https://randomuser.me/api/portraits/men/97.jpg",
+            "text": "As a seasoned programmer, I'm always on the lookout for platforms that challenge and inspire me. This platform exceeds all expectations with its vast array of problems and unparalleled learning resources. Whether you're a novice or a seasoned coder, you'll find endless opportunities to push your boundaries and elevate your skills."
+            }
+        ];
+
+      let currentIndex = 0;
+
+      // Funktion zum Rendern der Daten  Render means: take api data and displaying it on your webpage in a readable format.
+      const renderData = () => { 
+        const container = document.querySelector(".container");
+        container.innerHTML = `
+                <img src="${testData[currentIndex].photo}" alt="${testData[currentIndex].name}">
+                <h3>${testData[currentIndex].name}</h3>
+                <p><strong>${testData[currentIndex].position}</strong></p>
+                <p>${testData[currentIndex].text}</p>
+            `;
+      };
+
+       document.getElementById("previous").addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + testData.length) % testData.length;
+            renderData();
+        });
+
+        document.getElementById("next").addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % testData.length;
+            renderData();
+        });
+
+        // Initiales Rendern
+        renderData();
+
+    </script>
+  </body>
+</html>

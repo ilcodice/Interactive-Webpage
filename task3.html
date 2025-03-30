@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Form</title>
+  </head>
+  <body>
+    <main>
+      <section class="contact_section">
+        <div class="contact_us">
+          <h3>Contact us</h3>
+          <form id="contact_form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" />
+            <p id="name_error"></p>
+
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+            />
+            <p id="email_error"></p>
+
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Your Message"
+            ></textarea>
+            <p id="message_error"></p>
+
+            <button type="submit" id="submit">Submit</button>
+          </form>
+
+          <p id="copyright">copyright</p>
+        </div>
+      </section>
+    </main>
+
+    <style>
+      h3 {
+        color: white;
+      }
+      label,
+      input,
+      textarea {
+        width: 300px;
+        border-radius: 5px;
+        font-size: 12px;
+        padding: 5px;
+      }
+      textarea {
+        height: 80px;
+      }
+      label {
+        color: white;
+      }
+      p {
+        color: rgb(240, 53, 53);
+        font-size: 12px;
+        margin-top: 0px;
+      }
+      .contact_section {
+        background-color: rgb(21, 21, 87);
+        padding: 10px 60px;
+      }
+      .contact_us {
+        display: flex;
+        flex-direction: column;
+      }
+      button {
+        color: white;
+        background-color: rgb(121, 121, 224);
+        width: 80px;
+        border: none;
+        border-radius: 5px;
+        padding: 8px;
+        cursor: pointer;
+      }
+      #copyright {
+        color: white;
+        margin-top: 30px;
+      }
+    </style>
+
+    <script>
+      let date = new Date();
+      let fullYear = date.getFullYear();
+      document.querySelector("#copyright").append(fullYear);
+
+      const submitForm = (event) => {
+        event.preventDefault(); //this prevent reloading page by submiting
+
+        let name = document.querySelector("#name").value.trim(); //.trim removes the extra space at the begining and at end
+        let email = document.querySelector("#email").value.trim();
+        let message = document.querySelector("#message").value.trim();
+
+        let nameError = document.querySelector("#name_error");
+        let emailError = document.querySelector("#email_error");
+        let messageError = document.querySelector("#message_error");
+
+        let emptyRegex = /^\s*$/;
+        let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Fehlernachrichten zurücksetzen
+        let isValid = true; // Default value is true. If any condition fails, we'll set it to false.
+
+        if (emptyRegex.test(name)) {
+          nameError.textContent = "Name is required";  // textContent is used to change or set the contant of nameError 
+          isValid = false;
+        } else {
+          nameError.textContent = ""; // If no error, clear any previous error message
+        }
+
+        if (emptyRegex.test(email)) {
+          emailError.textContent = "Email is required";
+          isValid = false;
+        } else if (!emailRegex.test(email)) {
+          emailError.textContent = "Invalid email format";
+          isValid = false;
+        } else {
+          emailError.textContent = ""; // If no error, clear any previous error message
+        }
+
+        if (emptyRegex.test(message)) {
+          messageError.textContent = "Message is required";
+          isValid = false;
+        } else {
+          messageError.textContent = ""; // If no error, clear any previous error message
+        }
+
+        // If all fields are valid, display a success message
+        if (isValid) {
+          alert("Thanks for reaching out!");
+        }
+      };
+
+      document
+        .querySelector("#contact_form").addEventListener("submit", submitForm);
+    </script>
+  </body>
+</html>
